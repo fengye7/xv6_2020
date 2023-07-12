@@ -36,3 +36,7 @@ entry("getpid");
 entry("sbrk");
 entry("sleep");
 entry("uptime");
+
+#新增perl生成对应的汇编
+entry("trace");
+entry("sysinfo");
