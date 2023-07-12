@@ -7,9 +7,8 @@
 #include "kernel/fs.h"
 
 // find 函数
-void
-find(char *dir, char *file)
-{   
+void find(char *dir, char *file)
+{
     // 声明 文件名缓冲区 和 指针
     char buf[512], *p;
     // 声明文件描述符 fd
@@ -52,7 +51,7 @@ find(char *dir, char *file)
     }
 
     // 如果路径过长放不入缓冲区，则报错提示
-    if(strlen(dir) + 1 + DIRSIZ + 1 > sizeof buf)
+    if (strlen(dir) + 1 + DIRSIZ + 1 > sizeof buf)
     {
         fprintf(2, "find: directory too long\n");
         // 关闭文件描述符 fd
@@ -67,7 +66,7 @@ find(char *dir, char *file)
     // 读取 fd ，如果 read 返回字节数与 de 长度相等则循环
     while (read(fd, &de, sizeof(de)) == sizeof(de))
     {
-        if(de.inum == 0)
+        if (de.inum == 0)
             continue;
         // strcmp(s, t);
         // 根据 s 指向的字符串小于（s<t）、等于（s==t）或大于（s>t） t 指向的字符串的不同情况
@@ -83,7 +82,7 @@ find(char *dir, char *file)
         // stat 系统调用，可以获得一个已存在文件的模式，并将此模式赋值给它的副本
         // stat 以文件名作为参数，返回文件的 i 结点中的所有信息
         // 如果出错，则返回 -1
-        if(stat(buf, &st) < 0)
+        if (stat(buf, &st) < 0)
         {
             // 出错则报错
             fprintf(2, "find: cannot stat %s\n", buf);
@@ -99,12 +98,11 @@ find(char *dir, char *file)
         {
             // 打印缓冲区存放的路径
             printf("%s\n", buf);
-        } 
+        }
     }
 }
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     // 如果参数个数不为 3 则报错
     if (argc != 3)
