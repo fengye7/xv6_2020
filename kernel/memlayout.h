@@ -65,3 +65,6 @@
 //   TRAPFRAME (p->trapframe, used by the trampoline)
 //   TRAMPOLINE (the same page as in the kernel)
 #define TRAPFRAME (TRAMPOLINE - PGSIZE)
+
+// 表示mmap可以用于映射的最低地址
+#define MMAPMINADDR (TRAPFRAME - 10 * PGSIZE)
